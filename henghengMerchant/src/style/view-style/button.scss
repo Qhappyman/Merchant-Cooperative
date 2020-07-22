@@ -1,0 +1,25 @@
+.button {
+    .ant-btn {
+        margin-right: 8px;
+        margin-bottom: 12px;
+    }
+
+    .ant-btn-group {
+        margin-right: 8px;
+        margin-bottom: 12px;
+    }
+
+    .ant-btn-group .ant-btn {
+        margin: -1px;
+    }
+}
+#display1{
+    background-image: url(../../assets/images/display1.PNG);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+#display2{
+    background-image: url(../../assets/images/display2.PNG);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
