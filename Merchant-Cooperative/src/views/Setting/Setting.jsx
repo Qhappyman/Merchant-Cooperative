@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Layout, Input, Icon, Form, Button, Divider, message} from 'antd'
 import { withRouter } from 'react-router-dom'
-// import axios from '@/api'
 import axios from 'axios'
 // import { UserOutlined } from '@ant-design/icons';
 // import { API } from '@/api/config'
@@ -12,7 +11,7 @@ const layout = {
   };
 class Register extends Component {
     state = {
-        inf:''
+        inf:' '
     }
     handleSubmit = e => {
         e.preventDefault()
