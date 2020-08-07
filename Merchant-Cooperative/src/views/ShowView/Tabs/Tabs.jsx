@@ -79,7 +79,7 @@ class TabsViews extends Component {
                     <p>Ant Design 依次提供了三级选项卡，分别用于不同的场景</p>
                     <p>- 卡片式的页签，提供可关闭的样式，常用于容器顶部。</p>
                     <p>- 标准线条式页签，用于容器内部的主功能切换，这是最常用的 Tabs。</p>
-                    <p>- RadioButton 可作为更次级的页签来使用。</p>
+                    <p>- RadioButton 可作为的页签来使用。</p>
                 </div>
                 <Row gutter={8}>
                     <Col span={12}>

@@ -59,7 +59,7 @@ const columns = [
 let goodsList = [1, 2, 3];
 const data = [
     {
-        key: 'gip',
+        key: '1',
         name: '璧山养殖',
         price: '南岸区，以畜牧业为主',
         address:'璧山区'
