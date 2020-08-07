@@ -19,7 +19,7 @@ const FormView = () => {
                 <Input placeholder='璧山虾户'/>
             </Form.Item>
             <Form.Item name={['user', 'email']} label="联系电话" rules={[{ type: 'email' }]}>
-                <Input placeholder='15154786548'/>
+                <Input placeholder='15154788748'/>
             </Form.Item>
             <Form.Item name={['user', 'email']} label="地址" rules={[{ type: 'email' }]}>
                 <Input placeholder='璧山区'/>

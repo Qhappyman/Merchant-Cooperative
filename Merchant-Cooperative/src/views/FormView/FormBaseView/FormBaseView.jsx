@@ -61,7 +61,7 @@ const data = [
     {
         key: 'gip',
         name: '璧山养殖',
-        price: '在南岸区，以畜牧业为主',
+        price: '南岸区，以畜牧业为主',
         address:'璧山区'
     },
     {
