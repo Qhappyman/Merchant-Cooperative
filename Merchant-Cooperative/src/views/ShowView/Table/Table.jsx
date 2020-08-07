@@ -76,7 +76,7 @@ const columns = [
     okText="Yes"
     cancelText="No"
   >
-<a href="">Delete</a>
+<a href="">删除</a>
   </Popconfirm>
         )
     }

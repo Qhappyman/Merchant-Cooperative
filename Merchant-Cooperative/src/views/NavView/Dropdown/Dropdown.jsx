@@ -14,7 +14,7 @@ const menu = (
         <Menu.Item key='0'>1st menu item</Menu.Item>
         <Menu.Item key='1'>2nd menu item</Menu.Item>
         <Menu.Item key='2' disabled>
-            3rd menu item (disabled)
+            rd menu item (disabled)
         </Menu.Item>
         <SubMenu title='sub menu'>
             <Menu.Item>4rd menu item</Menu.Item>
