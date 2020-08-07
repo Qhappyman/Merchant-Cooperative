@@ -1,211 +1,132 @@
 import React, { Component } from 'react'
 import CustomBreadcrumb from '@/components/CustomBreadcrumb'
-import axios from 'axios'
-import {
-    Layout,
-    Row,
-    Col,
-    Divider,
-    Form,
-    Input,
-    Button,
-    InputNumber,
-    DatePicker,
-    Radio,
-    message
-} from 'antd'
+import { Layout, Divider, Row, Col, Table, Button } from 'antd'
 import '@/style/view-style/form.scss'
+import { Popconfirm} from 'antd';
+import { Link } from 'react-router-dom'
 
 
 
+function confirm(e) {
 
-class FromView extends Component {
-    state = {
-        confirmDirty: false,
-        autoCompleteResult: [],
-        visible: true
+}
+
+function cancel(e) {
+}
+const columns = [
+    {
+        title: '商户名',
+        dataIndex: 'name',
+        key: 'name',
+        render: text => <Button type='link'><Link to="/form/modify">{text}</Link></Button>
+    },
+    {
+        title: '描述',
+        dataIndex: 'price',
+        key: 'price'
+    },
+    {
+        title: '地址',
+        key: 'address',
+        dataIndex:'address'
+    },
+    {
+        title: '查看产品',
+        key: 'modify',
+        render: (text, record) => (
+            <span>
+                <Button type='link'><Link to="/show/table">查看</Link></Button>
+            </span>
+        )
+    },
+    {
+        title: '解除商户',
+        key: 'action',
+        render: (text, record) => (
+            <Popconfirm
+                onClick={localStorage.setItem('clickId', text.key)}
+                title="确定删除?"
+                onConfirm={confirm}
+                onCancel={cancel}
+                okText="Yes"
+                cancelText="No"
+            >
+                <a href="">删除</a>
+            </Popconfirm>
+        )
     }
+]
+let goodsList = [1, 2, 3];
+const data = [
+    {
+        key: 'gip',
+        name: '璧山养殖',
+        price: '在南岸区，以畜牧业为主',
+        address:'璧山区'
+    },
+    {
+        key: '2',
+        name: '南岸李某',
+        price: '主要生产农作物',
+        address:'南岸区'
+    },
+    {
+        key: '3',
+        name: '璧山猪场',
+        price: '优质猪种类，无病菌',
+        address:'璧山区'
+    },
+    {
+        key: '4',
+        name: '万州渔户',
+        price: '纯家养鱼类，保证新鲜度',
+        address:'万州区'
+    },
+    {
+        key: '5',
+        name: '南岸虾户',
+        price: '统一管理养殖的大体型虾',
+        address:'南岸区'
+    },
+    {
+        key: '6',
+        name: '璧山牛肉',
+        price: '川蜀牛肉专供地',
+        address:'璧山区'
+    },
+    {
+        key: '7',
+        name: '蔬菜商',
+        price: '农家肥浇灌的天然蔬菜',
+        address:'沙坪坝区'
+    },
+    {
+        key: '8',
+        name: '万州',
+        price: '以捕鱼为主',
+        address:'万州区'
+    },
+]
 
-    handleClose = () => {
-        this.setState({ visible: false })
+const Table1 = () => <Table columns={columns} dataSource={data} />
+class FromView extends React.Component {
+    componentDidMount() {             //进入页面获取信息，展示商家对应的商品
+
+
     }
-
-    handleSubmit = e => {
-        e.preventDefault()
-        this.props.form.validateFieldsAndScroll((err, fieldsValue) => {
-            if (err) return
-            fieldsValue.startTime=fieldsValue.startTime.format('YYYY-MM-DD')
-            fieldsValue.endTime=fieldsValue.endTime.format('YYYY-MM-DD')
-            let {name,price,description,predictTime,type,endTime,startTime,address,profit}=fieldsValue;
-            name=String(name);
-            price=String(price);
-            description=String(description);
-            predictTime=Number(predictTime);
-            type=Number(type);
-            address=String(address);
-            profit=String(profit);
-            axios
-            .post('/merchants/createCommodity', {name,price,description,predictTime,type,endTime,startTime,address,profit },{
-                withCredentials: true
-              })
-            .then(res => {
-                if (res.data.errCode === 0) {       //创建商品，成功后将信息存在localStorage里，以mer开头
-                    const INF=res.data.data;
-                    for(let i in INF){
-                        localStorage.setItem( `mer${i}`,INF[i])
-                    }
-                    message.info('添加成功')
-                } else {
-                    message.warning(res.data.errMessage);
-                }
-            })
-            .catch(err => {
-                message.warning('网络错误')
-            })           
-        })
-    }
-
-    handleConfirmBlur = e => {
-        const { value } = e.target
-        this.setState({ confirmDirty: this.state.confirmDirty || !!value })
-    }
-
-    compareToFirstPassword = (rule, value, callback) => {
-        const { form } = this.props
-        if (value && value !== form.getFieldValue('password')) {
-            callback('两次输入密码不一致!')
-        } else {
-            callback()
-        }
-    }
-
-    validateToNextPassword = (rule, value, callback) => {
-        const { form } = this.props
-        if (value && this.state.confirmDirty) {
-            form.validateFields(['confirm'], { force: true })
-        }
-        callback()
-    }
-
-    handleWebsiteChange = value => {
-        let autoCompleteResult
-        if (!value) {
-            autoCompleteResult = []
-        } else {
-            autoCompleteResult = ['@google.com', '@163.com', '@qq.com'].map(domain => `${value}${domain}`)
-        }
-        this.setState({ autoCompleteResult })
-    }
-
     render() {
-        const { getFieldDecorator } = this.props.form
-
-        const formItemLayout = {
-            labelCol: {
-                xs: { span: 16 },
-                sm: { span: 6 }
-            },
-            wrapperCol: {
-                xs: { span: 16 },
-                sm: { span: 10 }
-            }
-        }
-        const tailFormItemLayout = {
-            wrapperCol: {
-                xs: {
-                    span: 16,
-                    offset: 0
-                },
-                sm: {
-                    span: 10,
-                    offset: 6
-                }
-            }
-        }
-
         return (
             <Layout className='animated fadeIn'>
                 <div>
-                    <CustomBreadcrumb arr={['商品', '创建']}></CustomBreadcrumb>
-                </div>
-                <div className='base-style'>
-                    <h3>创建商品</h3>
-                    <Divider></Divider>
-                    <p>请填写以下信息来创建一个新的商品</p>
+                    <CustomBreadcrumb arr={['商家信息', '商户列表']}></CustomBreadcrumb>
                 </div>
 
                 <Row>
                     <Col>
                         <div className='base-style'>
-                            <Divider orientation='left'>信息键入</Divider>
-                            <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-                            <Form.Item label='商品名称'>
-                                    {getFieldDecorator('name', {
-                                        rules: [{ required: true, message: '请输入名称' }]
-                                    })(<Input
-                                        placeholder='商品名称'
-                                    />)}
-                                </Form.Item>
-                                <Form.Item label='商品价格'>
-                                    {getFieldDecorator('price', {
-                                        rules: [{ required: true, message: '请输入价格' }]
-                                    })(<InputNumber placeholder='请输入价格' style={{ width: '100%' }} />)}
-                                </Form.Item>
-                                <Form.Item label='生长周期(天)'>
-                                    {getFieldDecorator('predictTime', {
-                                        rules: [{ required: true, message: '请输入周期' }]
-                                    })(<InputNumber placeholder='请输入周期' style={{ width: '100%' }} />)}
-                                </Form.Item>
-                                <Form.Item label='商品描述'>
-                                    {getFieldDecorator('description', {
-                                        rules: [{ required: true, message: '请输入描述' }]
-                                    })(<Input
-                                        placeholder='请输入描述信息'
-                                    />)}
-                                </Form.Item>
-                                <Form.Item label='种类'>
-                                    {getFieldDecorator('type', {
-                                        rules: [{ required: true, message: '请选择种类' }]
-                                    })(
-                                        <Radio.Group>
-                                            <Radio value='1'>农业</Radio>
-                                            <Radio value='2'>畜牧业</Radio>
-                                            <Radio value='3'>果业</Radio>
-                                            <Radio value='4'>蔬菜</Radio>
-                                        </Radio.Group>
-                                    )}
-                                </Form.Item>
-                                <Form.Item label='开始时间'>
-                                    {getFieldDecorator('startTime', {
-                                        rules: [{ type: 'object', required: true, message: '请选择日期' }]
-                                    })(<DatePicker style={{ width: '100%' }} placeholder='请选择日期' />)}
-                                </Form.Item>
-                                <Form.Item label='结束时间'>
-                                    {getFieldDecorator('endTime', {
-                                        rules: [{ type: 'object', required: true, message: '请选择日期' }]
-                                    })(<DatePicker style={{ width: '100%' }} placeholder='请选择日期' />)}
-                                </Form.Item>
-                                <Form.Item label='养殖地址'>
-                                    {getFieldDecorator('address', {
-                                        rules: [{ required: true, message: '请输入地址' }]
-                                    })(<Input
-                                        placeholder='请输入地址'
-                                    />)}
-                                </Form.Item>
-                                <Form.Item label='利润'>
-                                    {getFieldDecorator('profit', {
-                                        rules: [{ required: true, message: '请输入利润' }]
-                                    })(<InputNumber placeholder='请输入利润' style={{ width: '100%' }} />)}
-                                </Form.Item>
-                                <Form.Item {...tailFormItemLayout}>
-                                    <Button
-                                        type='primary'
-                                        htmlType='submit'
-                                    >
-                                        创建
-                                    </Button>
-                                </Form.Item>
-                            </Form>
+                            <h3 id='basic'>商户</h3>
+                            <Divider />
+                            <Table1 />
                         </div>
                     </Col>
                 </Row>
@@ -214,6 +135,4 @@ class FromView extends Component {
     }
 }
 
-const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(FromView)
-
-export default WrappedNormalLoginForm
+export default FromView

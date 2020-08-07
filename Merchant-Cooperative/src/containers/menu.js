@@ -6,19 +6,19 @@ const menu = [
         auth: [1]
     },
     {
-        title: '展示',
+        title: '商品审核',
         key: '/public',
         icon: 'appstore',
         auth: [1],
-        subs: [{ title: '品牌展示', key: '/public/display', icon: '' }]
+        subs: [{ title: '申请列表', key: '/public/display', icon: '' }]
     },
     {
-        title: '商品信息',
+        title: '商家信息',
         key: '/form',
         icon: 'form',
         subs: [
-            { title: '创建商品', key: '/form/base-form', icon: '' },
-            { title: '修改商品', key: '/form/modify', icon: '' }
+            { title: '商家列表', key: '/form/base-form', icon: '' },
+            { title: '商家信息', key: '/form/modify', icon: '' }
         ]
     },
     {
@@ -26,8 +26,8 @@ const menu = [
         key: '/show',
         icon: 'pie-chart',
         subs: [
-            { title: '我的商品', key: '/show/table', icon: '' },
-            { title: '封面管理', key: '/show/upload', icon: '' }
+            { title: '商品列表', key: '/show/table', icon: '' },
+            { title: '修改商品', key: '/show/upload', icon: '' }
         ]
     },
     {

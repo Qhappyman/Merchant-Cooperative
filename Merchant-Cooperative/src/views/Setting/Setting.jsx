@@ -113,16 +113,6 @@ class Register extends Component {
                                     />
                                 )}
                             </Form.Item>
-                            <Form.Item  label="description">
-                                {getFieldDecorator('description', {
-                                    rules: [{ required: true, message: '请输入你的描述' }]
-                                })(
-                                    <Input
-                                        prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                        placeholder='商家描述'
-                                    />
-                                )}
-                            </Form.Item>
                             <Form.Item label="address">
                                 {getFieldDecorator('address', {
                                     rules: [{ required: true, message: '请输入地址' }]
@@ -130,7 +120,7 @@ class Register extends Component {
                                     <Input
                                     
                                         prefix={<Icon type='home' style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                        placeholder='商家地址'
+                                        placeholder='合作社地址'
                                     />
                                 )}
                             </Form.Item>

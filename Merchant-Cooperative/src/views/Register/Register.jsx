@@ -64,7 +64,7 @@ class Register extends Component {
             <Layout className='login animated fadeIn'>
                 <div className='model'>
                     <div className='login-form'>
-                        <h3>哼哼养殖商家注册</h3>
+                        <h3>哼哼养殖合作社注册</h3>
                         <Divider />
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Item>
@@ -94,7 +94,7 @@ class Register extends Component {
                                 })(
                                     <Input
                                         prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                        placeholder='商家描述'
+                                        placeholder='合作社描述'
                                     />
                                 )}
                             </Form.Item>
@@ -105,7 +105,7 @@ class Register extends Component {
                                     <Input
                                     
                                         prefix={<Icon type='home' style={{ color: 'rgba(0,0,0,.25)' }} />}
-                                        placeholder='商家地址'
+                                        placeholder='合作社地址'
                                     />
                                 )}
                             </Form.Item>

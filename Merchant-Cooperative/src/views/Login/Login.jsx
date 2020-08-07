@@ -78,7 +78,7 @@ class Login extends Component {
             <Layout className='login animated fadeIn'>
                 <div className='model'>
                     <div className='login-form'>
-                        <h3>哼哼养殖商家登录</h3>
+                        <h3>哼哼养殖合作社登录</h3>
                         <Divider />
                         <Form onSubmit={this.handleSubmit}>
                             <Form.Item>
